@@ -1,0 +1,17 @@
+using System;
+using System.Drawing;
+
+namespace Discussion3;
+
+class Hat
+{
+    string mat = "wool";
+    string color = "black";
+    string size = "large";
+    static void Main(string[] args)
+    {
+        Console.WriteLine("This hat is " + Hat.color);
+        Console.WriteLine("This hat is " + Hat.size);
+        Console.WriteLine("This hat is made of " + Hat.mat);
+    }
+}
