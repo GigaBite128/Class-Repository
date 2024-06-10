@@ -1,0 +1,39 @@
+string mycolor = "red";
+string color_a = "red";
+string color_b = "blue";
+string color_c = "yellow";
+string color = null;
+bool is_p = false;
+Console.WriteLine("My favorite color is a primary color. What is it?");
+
+
+while (!is_p)
+{
+    try
+    {
+        color = Console.ReadLine();
+        if (color == color_a || color == color_b || color == color_c)
+        {
+            is_p = true;
+            Console.WriteLine(color + "? You have good taste");
+        }
+        else
+        {
+            is_p = false;
+            throw new ArgumentException("Input must be: red, blue, or yellow");
+
+        }
+
+    }
+    catch (ArgumentException) {
+        Console.WriteLine("Have you typed a primary color? Check that your response is formated as lowercase letters");
+    }
+    Console.ReadLine();
+}
+
+if (color == mycolor)
+{ Console.WriteLine("Wow! You got it"); }
+else
+{
+    Console.WriteLine("My favorite color is red. " + color+ " is pretty cool too though!");
+}
