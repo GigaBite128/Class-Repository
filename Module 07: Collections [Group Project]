@@ -3,6 +3,7 @@
 */
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 //Posistions and Items on the shelf
 Dictionary<int, string> shelf = new Dictionary<int, string>
@@ -14,12 +15,13 @@ Dictionary<int, string> shelf = new Dictionary<int, string>
     { 5,"phone" }
 };
 //Remove an Item from the shelf
+Console.WriteLine("The shelf near the front door has keys, a wallet, glasses, a pencil, and a phone");
 Console.WriteLine("I need something from the shelf");
 string item = Console.ReadLine();
 switch(item)
 {
     case "keys":
-        shelf.Remove(1);
+        Console.WriteLine("I ussually pick up my keys last");
         break;
     case "wallet":
         shelf.Remove(2);
@@ -41,5 +43,30 @@ switch(item)
 foreach (KeyValuePair<int, string> kvp in shelf)
 { 
 Console.WriteLine($"Posistion: {kvp.Key} Item: {kvp.Value}");
+}
+//Adding New Item
+Console.WriteLine("I have some stuff in my pocket. What do I put on the shelf?");
+    shelf.Add (6,Console.ReadLine());
+
+//Replace a Value
+Console.WriteLine("I need the keys but my pockest are still full. What do I switch it with");
+shelf[1] = Console.ReadLine();
+
+// Method to sort and display the keys in the dictionary
+static void SortKeys(Dictionary<int, List<string>> shelf)
+{
+    var sortedKeys = shelf.Keys.ToList();
+    sortedKeys.Sort();
+    Console.WriteLine("\nSorted positions on the shelf:");
+
+    foreach (var key in sortedKeys)
+    {
+        Console.WriteLine($"Position: {key} Items: {string.Join(", ", shelf[key])}");
+    }
+}
+//Display
+foreach (KeyValuePair<int, string> kvp in shelf)
+{
+    Console.WriteLine($"Posistion: {kvp.Key} Item: {kvp.Value}");
 }
 Console.ReadLine();
