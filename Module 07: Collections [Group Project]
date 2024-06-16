@@ -21,7 +21,7 @@ string item = Console.ReadLine();
 switch(item)
 {
     case "keys":
-        Console.WriteLine("I ussually pick up my keys last");
+        Console.WriteLine("I usually pick up my keys last");
         break;
     case "wallet":
         shelf.Remove(2);
@@ -49,7 +49,7 @@ Console.WriteLine("I have some stuff in my pocket. What do I put on the shelf?")
     shelf.Add (6,Console.ReadLine());
 
 //Replace a Value
-Console.WriteLine("I need the keys but my pockest are still full. What do I switch it with");
+Console.WriteLine("I need the keys but my pockets are still full. What do I switch it with");
 shelf[1] = Console.ReadLine();
 
 // Method to sort and display the keys in the dictionary
