@@ -1,0 +1,136 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+/*Notes
+ * Nightshift rate is 1.03x the day rate
+ * Day = 1
+ * Night = 2
+ * $43 an hour average in the usa
+ */
+
+public class Program
+{
+    //Creating Subcontractors
+    public static void Main()
+    {
+        Subcontractor subcontractor1 = new Subcontractor("Tyler Ellington-Howell", 5, DateTime.Now, 2, 25.0);
+        Subcontractor subcontractor2 = new Subcontractor("Blade King", 2, DateTime.Now, 1, 30.0);
+        Subcontractor subcontractor3 = new Subcontractor("Daren Young", 3, DateTime.Now, 2, 35.0);
+        Subcontractor subcontractor4 = new Subcontractor("Rusbina Malak", 4, DateTime.Now, 1, 40.0);
+
+        //Array of Subcontractors
+        Subcontractor[] subcontractors = { subcontractor1, subcontractor2, subcontractor3, subcontractor4 };
+
+        //Mutating Subcontractor number and Payrate for Sub 1
+        subcontractor1.MutateNumber(1);
+        subcontractor1.MutatehourlyPayRate(45.0);
+
+        //Mutating Dates for Sub 1 & 3
+        DateTime newdateTime = new DateTime(2024, 7, 2);// July 2, 2024
+        subcontractor1.MutateStartDate(newdateTime);
+        subcontractor3.MutateStartDate(newdateTime);
+
+        //Loop for Subcontractor printing
+        foreach (var subcontractor in subcontractors)
+        {
+            //Ternary Conditional Operator| Condition ? trueValue : falseValue
+            string shift = subcontractor.AccessShift() == 1 ? "Day Shift" : "Night Shift";
+
+            //Printing the Subcontractor's Attributes
+            Console.WriteLine($"\nName: {subcontractor.AccessName()} Number: {subcontractor.AccessNumber()} Start Date: {subcontractor.AccessDate()} Shift: {shift} Pay: ${subcontractor.AccessHourlyPayRate()}");
+
+            //Printing 8 Hour Pay Rate
+            Console.WriteLine($"{subcontractor.AccessName()} Will earn ${subcontractor.PayCheck()} on their shift");
+        }
+
+
+        Console.ReadLine();
+    }
+
+
+    public class Contractor
+    {
+        //Public variables
+        string name;
+        int number;
+        DateTime startDate;
+
+        //Constructor
+        public Contractor(string _name, int _number, DateTime _startDate)
+        {
+            name = _name;
+            number = _number;
+            startDate = _startDate;
+        }
+        //Accessor for Contractor name
+        public string AccessName()
+        {
+            return name;
+        }
+        //Accessor for Contractor Number
+        public int AccessNumber()
+        {
+            return number;
+        }
+        //Mutator for Sub Contractor Number
+        public void MutateNumber(int _number)
+        {
+            number = _number;
+        }
+        //Accessor for Contractor Start Date
+        public DateTime AccessDate()
+        {
+            return startDate;
+        }
+        //Mutator for Start Date
+        public void MutateStartDate(DateTime _startDate)
+        {
+            startDate = _startDate;
+        }
+    }
+
+
+    //Subcontractor Atributes
+    public class Subcontractor : Contractor
+    {
+        //Public variables
+        int shift;
+        double hourlyPayRate;
+
+        //Constructor for Contractor
+        public Subcontractor(string _name, int _number, DateTime _startDate, int _shift, double _hourlyPayRate)
+
+           : base(_name, _number, _startDate)
+        {
+            this.shift = _shift;
+            hourlyPayRate = _hourlyPayRate;
+        }
+        //Accessor for shift
+        public int AccessShift()
+        {
+            return shift;
+        }
+        //Accessor for Pay
+        public double AccessHourlyPayRate()
+        {
+            return hourlyPayRate;
+        }
+        //Mutator for Pay
+        public void MutatehourlyPayRate(double _hourlyPayRate)
+        {
+            hourlyPayRate = _hourlyPayRate;
+        }
+        //Pay Calculator Method
+        public double PayCheck()
+        {
+            if (shift == 2)
+            {
+                return hourlyPayRate * 1.03 * 8;
+            }
+            else
+            {
+                return hourlyPayRate * 8;
+            }
+        }
+    }
+}
